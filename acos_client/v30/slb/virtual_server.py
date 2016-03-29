@@ -44,7 +44,7 @@ class VirtualServer(base.BaseV30):
         if not update:
             name = ''
 
-        self._post(self.url_prefix + name, params, **kwargs)
+        return self._post(self.url_prefix + name, params, **kwargs)
 
     def create(self, name, ip_address, status='stats-data-enable', arp_disable=None, **kwargs):
         try:
@@ -54,14 +54,14 @@ class VirtualServer(base.BaseV30):
         else:
             raise acos_errors.Exists
 
-        self._set(name, ip_address, status, arp_disable=arp_disable, **kwargs)
+        return self._set(name, ip_address, status, arp_disable=arp_disable, **kwargs)
 
     def update(self, name, ip_address=None, status='stats-data-enable',
                arp_disable=None, **kwargs):
         self._set(name, ip_address, status, update=True, arp_disable=arp_disable, **kwargs)
 
     def delete(self, name):
-        self._delete(self.url_prefix + name)
+        return self._delete(self.url_prefix + name)
 
     def stats(self, name='', **kwargs):
         # resp = self._get(self.url_prefix + name + '/stats/')
