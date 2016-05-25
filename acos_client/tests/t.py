@@ -141,6 +141,12 @@ def run_all(ax, partition, pmap):
     c = get_client(ax)
     c.system.information()
 
+    # DNS
+
+    c.dns.set(primary='8.8.8.8')
+    c.dns.set(primary='8.8.8.8', secondary='8.8.4.4')
+    c.dns.set(primary='172.18.61.2', secondary='172.18.61.3', suffix='boi.a10networks.com')
+
     # c.ha.sync('172.18.61.27', 'admin', 'a10')
 
     print("=============================================================")
